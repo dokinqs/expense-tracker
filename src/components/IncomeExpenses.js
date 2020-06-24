@@ -5,14 +5,14 @@ export const IncomeExpenses = () => {
     const { transactions } = useContext(GlobalContext);
     const amounts = transactions.map(transaction => transaction.amount); 
 
-    const income = amounts
-        .filter(item => item > 0)
+    const income = amounts.filter(item => item > 0)
         .reduce((acc, item) => (acc += item), 0)
-        .toFixed(2);
+        .toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
     const expense = (
-        amounts.filter(item => item < 0).reduce((acc, item) => (acc += item), 0) * -1
-    ).toFixed(2);
+        amounts.filter(item => item < 0)
+        .reduce((acc, item) => (acc += item), 0) * -1
+    ).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
     return (
         <div>

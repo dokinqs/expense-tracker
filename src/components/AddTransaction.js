@@ -10,7 +10,8 @@ export const AddTransaction = () => {
     // amount will be a string, convert into number using + or Math.floor
     const onSubmit = (e) => { 
         e.preventDefault(); 
-        
+
+        // TODO: amount commas
         const newTransaction = { 
             id: Math.floor(Math.random() * 100000000), 
             text, 
@@ -30,6 +31,7 @@ export const AddTransaction = () => {
             <input type="text" 
                 placeholder="Enter text"
                 required value={text} 
+                maxLength="40"
                 onChange={(e) => setText(e.target.value)}  />
             </div>
 
@@ -38,15 +40,11 @@ export const AddTransaction = () => {
                 (ex: -100 or 100)</label>
             <input type="number" 
                 placeholder="Enter amount"
+                step="0.01"
+                min="-1000000"
+                max="1000000"
                 required value={amount} 
-                onChange={(e) => { 
-                    if (e.target.value !== "0" && e.target.value !== "-0") {
-                        setAmount(e.target.value);
-                        e.target.setCustomValidity('');
-                    } else { 
-                        e.target.setCustomValidity('Value cannot be zero.');
-                    }
-                }}
+                onChange={(e) => setAmount(e.target.value)}
             />
             </div>
             
