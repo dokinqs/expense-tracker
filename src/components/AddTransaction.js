@@ -7,11 +7,9 @@ export const AddTransaction = () => {
 
     const { addTransaction } = useContext(GlobalContext);
 
-    // amount will be a string, convert into number using + or Math.floor
     const onSubmit = (e) => { 
         e.preventDefault(); 
 
-        // TODO: amount commas
         const newTransaction = { 
             id: Math.floor(Math.random() * 100000000), 
             text, 
@@ -31,7 +29,7 @@ export const AddTransaction = () => {
             <input type="text" 
                 placeholder="Enter text"
                 required value={text} 
-                maxLength="40"
+                maxLength="20"
                 onChange={(e) => setText(e.target.value)}  />
             </div>
 
